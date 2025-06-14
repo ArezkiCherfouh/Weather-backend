@@ -25,5 +25,7 @@ def get_weather(city: str):
             "max_temp" : data["main"]["temp_max"],
             "description": data["weather"][0]["description"].title()
         }
+    elif res.status_code == 429:
+        return {"error": f" Error : {res.status_code} Too many requests. Please wait a moment and try again."}
     else:
-        return {"error": f"{res.status_code} City not found"}
+        return {"error": f" Error : {res.status_code} City not found"}
